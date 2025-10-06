@@ -45,7 +45,7 @@ void kirjan_lainaus(Kirja *kirja, int next_index) {
     scanf("%s", &lainatun_nimi);
 
     for(int i = 0; i < next_index; i++) {
-        if (strcmp(kirja[i].nimi, lainatun_nimi) == 0) {
+        if (strcmp(kirja[i].nimi, lainatun_nimi) == 0 && kirja[i].lainassa == 0) {
             char lainaajan_nimi[20];
 
             printf("\nAnna nimesi: ");
@@ -74,7 +74,7 @@ void kirjan_palautus(Kirja *kirja, int next_index) {
     scanf("%s", &palautetun_nimi);
 
     for(int i = 0; i < next_index; i++) {
-        if (strcmp(kirja[i].nimi, palautetun_nimi) == 0) {
+        if (strcmp(kirja[i].nimi, palautetun_nimi) == 0 && kirja[i].lainassa == 1) {
             strcpy(kirja[i].lainaaja, "");
             kirja[i].lainassa = 0;
 
