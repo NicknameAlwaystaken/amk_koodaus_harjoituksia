@@ -17,12 +17,13 @@ int kirjan_tallennus(Kirja *kirja, int seuraava_indeksi) {
     // käydään kirjat läpi
     for(int i = 0; i < seuraava_indeksi; i++) {
         // onko saman nimistä kirjaa olemassa
-				if(strcmp(kirja[i].nimi, uuden_kirjan_nimi) == 0) {
+        if(strcmp(kirja[i].nimi, uuden_kirjan_nimi) == 0) {
             // ei haluta tallentaa kirjaa joka jakaa nimen toisen kanssa
             return 0; // palautetaan 0 että tiedetään ettei uutta kirjaa tallennettu
         }
     }
 
+    strcpy(kirja->nimi, uuden_kirjan_nimi);
     strcpy(kirja->lainaaja, "");
     kirja->lainassa = 0;
     kirja->lainakerrat = 0;
@@ -240,5 +241,5 @@ int main()
     }
 
     printf("\n");
-	return 0;
+    return 0;
 }
