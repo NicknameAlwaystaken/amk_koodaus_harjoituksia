@@ -42,6 +42,27 @@ void set_ranges(uint16_t *lowest_range, uint16_t *highest_range) {
 
 }
 
+void guess_number(int correct_number) {
+  int guessed_number = -1;
+  while(1) {
+    Serial.println("Guess a number");
+    while(Serial.available() == 0);
+
+    guessed_number = Serial.parseInt();
+
+    tyhjenna_bufferi();
+
+    if (correct_number < guessed_number) {
+      Serial.println("You guessed too high!");
+    } else if (correct_number > guessed_number) {
+      Serial.println("You guessed too low!");
+    } else {
+      Serial.println("You got it!");
+      break;
+    }
+  }
+}
+
 void setup() {
   // put your setup code here, to run once:
 
@@ -55,13 +76,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  Serial.println("\n\nUusi kierros!\n");
 
-  uint16_t lowest_range, highest_range;
+  uint16_t lowest_range, highest_range, correct_number;
 
   set_ranges(&lowest_range, &highest_range); // haetaan syötä käyttäjältä
 
   Serial.print("Alaraja: ");Serial.println((int)lowest_range); // tulostetaan saadut rajat
   Serial.print("Ylaraja: ");Serial.println((int)highest_range);
 
-  Serial.print("Random number: ");Serial.println(get_random(lowest_range, highest_range)); // tulostetaan sattumanvarainen numero numeroiden välistä
+  correct_number = get_random(lowest_range, highest_range); // haetaan randomi luku ala- ja ylärajan välistä.
+  guess_number(correct_number); // annetaan oikea luku arvattavaksi
+
+  Serial.print("Correct number: ");Serial.println(correct_number); // tulostetaan sattumanvarainen numero numeroiden välistä
 }
