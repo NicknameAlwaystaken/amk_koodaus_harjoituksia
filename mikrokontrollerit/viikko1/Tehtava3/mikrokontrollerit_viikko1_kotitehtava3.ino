@@ -9,8 +9,8 @@ void tyhjenna_bufferi() {
 int get_random(int lowest, int highest) {
   int random_seed = analogRead(random_a_pin); // otetaan "leijuvasta" pinnistä randomi numero
 
-  int modulo = random_seed % (highest - lowest); // katsotaan pienimmän ja isomman etäisyys ja otetaan siitä väliltä joku numero
-
+  int modulo = random_seed % (1 + (highest - lowest)); // katsotaan pienimmän ja isomman etäisyys ja otetaan siitä väliltä joku numero
+  // lisätään yks jotta saadaan korkeinkin luku arvottavaksi
   int result = lowest + modulo; // lisätään pienin numero jotta päässään lowest ja highest numeroiden väliin
 
   return result;
@@ -18,27 +18,21 @@ int get_random(int lowest, int highest) {
 
 void set_ranges(uint16_t *lowest_range, uint16_t *highest_range) {
   Serial.println("Anna alaraja: ");
-  int low = 0;
-  int high = 0;
   while(Serial.available() == 0);
 
-  low = Serial.parseInt(); // luetaan alaraja
-
-  *lowest_range = low;
+  *lowest_range = Serial.parseInt();
 
   tyhjenna_bufferi();
 
   Serial.println("Anna ylaraja: ");
   while(Serial.available() == 0);
 
-  high = Serial.parseInt();
-
-  *highest_range = high;
+  *highest_range = Serial.parseInt();
 
   tyhjenna_bufferi();
 
-  Serial.print("Alaraja: ");Serial.println(low);
-  Serial.print("Ylaraja: ");Serial.println(high);
+  Serial.print("Alaraja: ");Serial.println(*lowest_range);
+  Serial.print("Ylaraja: ");Serial.println(*highest_range);
 
 }
 
@@ -65,9 +59,7 @@ void guess_number(int correct_number) {
 
 void setup() {
   // put your setup code here, to run once:
-
   Serial.begin(9600);
-
   Serial.setTimeout(100000);
 
   pinMode(random_a_pin, OUTPUT);
@@ -76,7 +68,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println("\n\nUusi kierros!\n");
+  Serial.println("Uusi kierros!\n");
 
   uint16_t lowest_range, highest_range, correct_number;
 
