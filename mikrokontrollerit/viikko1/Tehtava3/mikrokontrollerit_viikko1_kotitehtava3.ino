@@ -22,7 +22,7 @@ void set_ranges(uint16_t *lowest_range, uint16_t *highest_range) {
   int high = 0;
   while(Serial.available() == 0);
 
-  low = Serial.parseInt();
+  low = Serial.parseInt(); // luetaan alaraja
 
   *lowest_range = low;
 
