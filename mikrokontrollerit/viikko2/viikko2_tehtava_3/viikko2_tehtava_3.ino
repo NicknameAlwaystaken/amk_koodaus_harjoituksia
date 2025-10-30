@@ -18,15 +18,17 @@ void loop() {
   pinnit = selvitaPinnienTilat1(); 
   selvitaPinnienTilat2(pinnit_ptr);
 
+  Serial.println("\n");
+
   for(int i = 0; i < 4; i++) {
-    Serial.print("Pinni ptr ");Serial.print(i);Serial.print(": ");Serial.println(pinnit_ptr[i]);
+    Serial.print("Pinni ptr ");Serial.print(i + 2);Serial.print(": ");Serial.println(pinnit_ptr[i]);
   }
 
-  Serial.println("\n");
+  Serial.print("\n");
   Serial.print("Pinni struct 2: ");Serial.println(pinnit.pin2);
   Serial.print("Pinni struct 3: ");Serial.println(pinnit.pin3);
   Serial.print("Pinni struct 4: ");Serial.println(pinnit.pin4);
   Serial.print("Pinni struct 5: ");Serial.println(pinnit.pin5);
 
-  delay(500);
+  delay(1000);
 }
