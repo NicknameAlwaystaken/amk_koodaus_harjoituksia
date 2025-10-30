@@ -37,8 +37,10 @@ void set_ranges(uint16_t *lowest_range, uint16_t *highest_range) {
 }
 
 void guess_number(int correct_number) {
+  int amount_guessed = 0;
   int guessed_number = -1;
   while(1) {
+    amount_guessed++;
     Serial.println("Guess a number");
     while(Serial.available() == 0);
 
@@ -55,6 +57,8 @@ void guess_number(int correct_number) {
       break;
     }
   }
+  
+  Serial.print("Amount of guesses: ");Serial.println(amount_guessed);
 }
 
 void setup() {
