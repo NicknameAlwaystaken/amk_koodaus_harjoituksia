@@ -18,6 +18,7 @@ void loop() {
   pinnit = selvitaPinnienTilat1(); 
   selvitaPinnienTilat2(pinnit_ptr);
 
+
   Serial.println("\n");
 
   for(int i = 0; i < 4; i++) {
