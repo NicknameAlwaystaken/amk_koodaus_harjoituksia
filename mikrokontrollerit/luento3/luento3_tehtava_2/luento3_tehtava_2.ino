@@ -1,8 +1,6 @@
 volatile int pcint0PinLow = 0;
 
 
-
-
 void setup() {
 
   for(int i = 8;i<14;i++)
