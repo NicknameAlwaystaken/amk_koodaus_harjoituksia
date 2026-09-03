@@ -1,1 +1,6 @@
 *.exe
+
+*.venv
+*activate
+*lib
+*bin
